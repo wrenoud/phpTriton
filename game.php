@@ -32,4 +32,10 @@ Class TritonGame {
 		$options = array("count"=>$count,"offset"=>$offset,"group"=>$msg_type);
 		return $this->client->gameRequest("fetch_game_messages",$this->id,$options);
 	}
+	function GetDiplomacyMessages($count, $offset = 0){
+		return $this->GetMessages('game_diplomacy',$count, $offset);
+	}
+	function GetEventMessages($count, $offset = 0){
+		return $this->GetMessages('game_event',$count, $offset);
+	}
 }

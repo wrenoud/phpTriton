@@ -40,5 +40,5 @@ All methods return decoded JSON arrays.
 * `GetIntel()` - returns intel statistics
 * `GetUnreadCount()` - returns unread message counts
 * `GetPlayerAchievements()` - returns game players achievement information
-* `GetMessages($msg_type, $count, $offset = 0)` - returns messages
-  * `$msg_type` can be either `'game_diplomacy'` or `'game_event'`
+* `GetDiplomacyMessages($count, $offset = 0)` - returns diplomacy messages
+* `GetEventMessages($count, $offset = 0)` - returns event messages
