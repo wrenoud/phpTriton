@@ -116,11 +116,11 @@ class TritonClient {
 
             $result = curl_post($url, $fields, array(CURLOPT_HEADER => 1, CURLOPT_COOKIE => "auth={$this->auth_cookie};"));
             $res = http_parse($result);
-
+            
             if($res['body'] != ''){
                 $body_json = json_decode($res['body'], true);
                 
-                if($body_json["event"] != $type . ":error" || $body_json["event"] != "None"){
+                if($body_json["event"] != $type . ":error" && $body_json["event"] != "None"){
                     $this->auth_cookie = $res['headers']['Set-Cookie']['auth']['value'];
                     return $body_json["report"];
                 }else{
@@ -130,6 +130,9 @@ class TritonClient {
                         case "must_be_logged_in":
                             $this->logged_in = false;
                             print "Error: not logged in";
+                            break;
+                        case "client_on_wrong_version":
+                            print "Error: using wrong api version";
                             break;
                         case "None":
                             print "Error: game not found";
