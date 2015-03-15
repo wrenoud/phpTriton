@@ -15,6 +15,6 @@ Class TritonServer {
         return $this->client->serverRequest("init_player");
     }
     function GetOpenGames(){
-        return $client->serverRequest("open_games");
+        return $this->client->serverRequest("open_games");
     }
 }
