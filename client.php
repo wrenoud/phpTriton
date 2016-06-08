@@ -1,8 +1,8 @@
 <?php
 
-require_once "util.php";
-require_once "game.php";
-require_once "server.php";
+require_once __DIR__ . "/util.php";
+require_once __DIR__ . "/game.php";
+require_once __DIR__ . "/server.php";
 
 class TritonClient {
     var $version;
@@ -33,9 +33,9 @@ class TritonClient {
         );
         $result = curl_post($url, $fields, array(CURLOPT_HEADER => 1));
         $res = http_parse($result);
-        
+
         $res_body = json_decode($res['body'], true);
-        
+
         if($res_body[0] == "meta:login_success"){
             $this->auth_cookie = $res['headers']['Set-Cookie']['auth']['value'];
             $this->logged_in = true;
@@ -72,13 +72,13 @@ class TritonClient {
             $fields = array(
                 'type' => $type,
             );
-            
+
             $result = curl_post($url, $fields, array(CURLOPT_HEADER => 1, CURLOPT_COOKIE => "auth={$this->auth_cookie};"));
             $res = http_parse($result);
-            
+
             if($res['body'] != ''){
                 $body_json = json_decode($res['body'], true);
-                
+
                 if($body_json[0] == "meta:" . $type){
                     $this->auth_cookie = $res['headers']['Set-Cookie']['auth']['value'];
                     return $body_json[1];
@@ -116,16 +116,16 @@ class TritonClient {
 
             $result = curl_post($url, $fields, array(CURLOPT_HEADER => 1, CURLOPT_COOKIE => "auth={$this->auth_cookie};"));
             $res = http_parse($result);
-            
+
             if($res['body'] != ''){
                 $body_json = json_decode($res['body'], true);
-                
+
                 if($body_json["event"] != $type . ":error" && $body_json["event"] != "None"){
                     $this->auth_cookie = $res['headers']['Set-Cookie']['auth']['value'];
                     return $body_json["report"];
                 }else{
                     $err_msg =  $body_json["report"];
-                    
+
                     switch($err_msg){
                         case "must_be_logged_in":
                             $this->logged_in = false;
@@ -151,4 +151,3 @@ class TritonClient {
         return false;
     }
 }
-
