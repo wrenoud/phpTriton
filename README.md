@@ -1,7 +1,7 @@
 phpTriton
 =========
 
-A PHP client for the unpublished API for Neptune's Pride II: Triton (http://np.ironhelmet.com/)
+A PHP client for the unpublished API for Neptune's Pride II: Triton (https://np.ironhelmet.com/)
 
 Usage
 -----
