@@ -10,6 +10,7 @@ class TritonClient {
     var $logged_in;
     var $alias;
     var $password;
+    var $url;
 
     function TritonClient($alias, $password, $version = 7){
         $this::__constructor($alias, $password, $version);
@@ -22,10 +23,11 @@ class TritonClient {
         $this->alias = $alias;
         $this->password = $password;
         $this->logged_in = false;
+        $this->url = "https://np.ironhelmet.com";
     }
 
     function authenticate(){
-        $url = "http://triton.ironhelmet.com/arequest/login";
+        $url = $this->url . "/arequest/login";
         $fields = array(
             "type" => "login",
             "alias" => $this->alias,
@@ -68,7 +70,7 @@ class TritonClient {
 
     function serverRequest($type){
         if($this->logged_in){
-            $url = 'http://triton.ironhelmet.com/mrequest/' . $type;
+            $url = $this->url . '/mrequest/' . $type;
             $fields = array(
                 'type' => $type,
             );
@@ -105,7 +107,7 @@ class TritonClient {
 
     function gameRequest($type, $game_id, $options = array()){
         if($this->logged_in){
-            $url = 'http://triton.ironhelmet.com/grequest/' . $type;
+            $url = $this->url . '/grequest/' . $type;
             $fields = array(
                 'type' => $type,
                 'version' => $this->version,
