@@ -46,10 +46,18 @@ Class TritonGame {
     function BuyEconomy($star, $price){
         return $this->order("batched_orders", "upgrade_economy,{$star},{$price}");
     }
+
     //function BuyIndustry($star, $price){
     //    return $this->order("batched_orders", "upgrade_industry,{$star},{$price}");
     //}
     //function BuyScience($star, $price){
     //    return $this->order("batched_orders", "upgrade_science,{$star},{$price}");
     //}
+
+    /**
+     * Admin Orders
+     */
+    function TogglePause(){
+        return $this->order("order", "toggle_pause_game");
+    }
 }
