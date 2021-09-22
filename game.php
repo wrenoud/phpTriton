@@ -4,10 +4,12 @@ Class TritonGame {
     var $client;
     var $id;
 
+    // PHP 4 style constructor for backwards-compatibility.
     function TritonGame($client, $game_id){
         $this::__constructor($client, $game_id);
     }
-    function __constructor($client, $game_id)
+
+    function __construct($client, $game_id)
     {
         $this->client = $client;
         $this->id = $game_id;
