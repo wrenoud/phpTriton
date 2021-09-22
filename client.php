@@ -12,11 +12,12 @@ class TritonClient {
     var $password;
     var $url;
 
+    // PHP 4 style constructor for backwards-compatibility.
     function TritonClient($alias, $password, $version = 7){
-        $this::__constructor($alias, $password, $version);
+        $this::__construct($alias, $password, $version);
     }
 
-    function __constructor($alias, $password, $version = 7)
+    function __construct($alias, $password, $version = 7)
     {
         $this->version = $version;
         $this->auth_cookie = "";
