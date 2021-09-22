@@ -6,7 +6,7 @@ Class TritonGame {
 
     // PHP 4 style constructor for backwards-compatibility.
     function TritonGame($client, $game_id){
-        $this::__constructor($client, $game_id);
+        $this::__construct($client, $game_id);
     }
 
     function __construct($client, $game_id)
